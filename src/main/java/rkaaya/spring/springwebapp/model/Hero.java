@@ -1,7 +1,9 @@
 package rkaaya.spring.springwebapp.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -10,6 +12,8 @@ import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 @Entity
 public class Hero {
 
@@ -22,8 +26,7 @@ public class Hero {
     @ManyToMany(mappedBy = "heroes")
     private Set<Team> teams = new HashSet<>();
 
-    public Hero(Long id, String name, String realName) {
-        this.id = id;
+    public Hero(String name, String realName) {
         this.name = name;
         this.realName = realName;
     }
