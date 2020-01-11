@@ -6,29 +6,22 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Entity
-public class Hero {
+public class HeroDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String name;
 
-    @OneToOne
-    private HeroDetails heroDetails;
-
-    @ManyToMany(mappedBy = "heroes")
-    private Set<Team> teams = new HashSet<>();
-
-    public Hero(String name) {
+    public HeroDetails(String name) {
         this.name = name;
     }
 
@@ -36,8 +29,8 @@ public class Hero {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Hero hero = (Hero) o;
-        return Objects.equals(id, hero.id);
+        HeroDetails realName = (HeroDetails) o;
+        return Objects.equals(id, realName.id);
     }
 
     @Override
@@ -47,11 +40,9 @@ public class Hero {
 
     @Override
     public String toString() {
-        return "Hero{" +
+        return "HeroDetails{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", realName='" + heroDetails + '\'' +
-                ", teams=" + teams +
                 '}';
     }
 }
